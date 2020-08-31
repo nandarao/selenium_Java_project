@@ -1,5 +1,7 @@
 package testCases;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -83,7 +85,7 @@ public class Test_002_Login_DDT {
 				this.login.enterUserName(userID);
 				this.login.enterPassword(password);
 				this.login.clickLogin();
-				this.softAssert.assertTrue(true);
+				AssertJUnit.assertTrue(true);
 				Thread.sleep(5000);
 
 				if (this.useWebDriverElements.useWebElement(null, null, Action.getTitle, null, "Home page title matching with expected")
@@ -93,7 +95,7 @@ public class Test_002_Login_DDT {
 					if (this.expected.contains("Pass")) {
 
 						this.screenShot.takeScreenshot("Pass_HomePage");
-						this.softAssert.assertTrue(true);
+						AssertJUnit.assertTrue(true);
 						this.login.clickLogout();
 						this.readExcelData.writeData("LoginPageData", i, 3, "Pass");
 						status.add("Pass");
@@ -102,7 +104,7 @@ public class Test_002_Login_DDT {
 
 						this.screenShot.takeScreenshot("Fail_HomePage");
 						this.login.clickLogout();
-						this.softAssert.assertFalse(false);
+						AssertJUnit.assertFalse(false);
 						this.readExcelData.writeData("LoginPageData", i, 3, "Fail");
 						status.add("Fail");
 					}
@@ -116,14 +118,14 @@ public class Test_002_Login_DDT {
 
 						this.screenShot.takeScreenshot("Fail_LoginPage_Negative_Testing");
 						this.readExcelData.writeData("LoginPageData", i, 3, "Fail");
-						this.softAssert.assertFalse(true);
+						AssertJUnit.assertFalse(true);
 						status.add("Fail");
 
 					} else if (this.expected.contains("Fail")) {
 
 						this.screenShot.takeScreenshot("Pass_LoginPage_Negative_Testing");
 						this.readExcelData.writeData("LoginPageData", i, 3, "Pass");
-						this.softAssert.assertTrue(true);
+						AssertJUnit.assertTrue(true);
 						status.add("Pass");
 					}
 
@@ -132,7 +134,7 @@ public class Test_002_Login_DDT {
 			} catch (Exception e) {
 				log.error(e.getMessage());
 				this.screenShot.takeScreenshot("Fail_loginPage");
-				this.softAssert.assertFalse(true);
+				AssertJUnit.assertFalse(true);
 				e.printStackTrace();
 			}
 
@@ -140,12 +142,12 @@ public class Test_002_Login_DDT {
 
 		if (status.contains("Fail")) {
 
-			this.softAssert.assertFalse(true);
+			AssertJUnit.assertFalse(true);
 			this.driver.quit();
 
 		} else {
 
-			this.softAssert.assertTrue(true);
+			AssertJUnit.assertTrue(true);
 			this.driver.quit();
 		}
 

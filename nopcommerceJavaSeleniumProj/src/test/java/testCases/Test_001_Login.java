@@ -1,5 +1,9 @@
 package testCases;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import static org.testng.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
@@ -68,7 +72,7 @@ public class Test_001_Login {
 
 		// this.screenShot = new ConfigScreenshot(this.driver);
 		try {
-			assertEquals(useWebDriverElements.useWebElement(null, null, Action.getTitle, null,
+			AssertJUnit.assertEquals(useWebDriverElements.useWebElement(null, null, Action.getTitle, null,
 					"Login page title matching with expected"), "Your store. Login");
 			this.screenShot.takeScreenshot("Pass_loginPage");
 		}
